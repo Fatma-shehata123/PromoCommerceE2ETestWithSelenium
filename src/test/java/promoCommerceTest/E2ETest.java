@@ -1,6 +1,7 @@
 package promoCommerceTest;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import promoCommerce.pages.CheckoutPage;
 import promoCommerce.pages.HomePage;
