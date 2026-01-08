@@ -15,16 +15,25 @@ public class E2ETest extends BaseTest{
     private LoginPage loginPage;
     private HomePage homePage;
     private CheckoutPage checkoutPage;
-    private ItemsTestData itemsTestData;
     private LoginTestData loginTestData;
+    private ItemsTestData itemsTestData;
     private CheckOutTestData checkOutTestData;
 
-    public E2ETest(){
-        this.loginTestData = JsonUtils.getTestData(ConfigManager.getProperty("login.testdata"), LoginTestData.class);
-        this.itemsTestData = JsonUtils.getTestData(ConfigManager.getProperty("items.testdata"), ItemsTestData.class);
-        this.checkOutTestData = JsonUtils.getTestData(ConfigManager.getProperty("checkout.testdata"), CheckOutTestData.class);
-
+    public E2ETest(){}
+    
+    @BeforeClass
+    public void loadTestData() {
+        loginTestData = JsonUtils.getTestData(
+                ConfigManager.getProperty("login.testdata"),
+                LoginTestData.class);
+        itemsTestData = JsonUtils.getTestData(
+                ConfigManager.getProperty("items.testdata"),
+                ItemsTestData.class);
+        checkOutTestData = JsonUtils.getTestData(
+                ConfigManager.getProperty("checkout.testdata"),
+                CheckOutTestData.class);
     }
+
     @BeforeMethod
     public void setupPage() {
         loginPage = new LoginPage(driver);
