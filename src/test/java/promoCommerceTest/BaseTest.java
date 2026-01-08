@@ -9,11 +9,11 @@ import utils.reader.ConfigManager;
 
 public class BaseTest {
 
+    protected WebDriver driver;
+
     public BaseTest() {
         ConfigManager.initialize();
     }
-
-    protected WebDriver driver;
 
     @BeforeMethod
     public void startDriver() {
@@ -24,10 +24,12 @@ public class BaseTest {
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--remote-allow-origins=*");
             options.addArguments("--window-size=1920,1080");
         }
 
-        this.driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.get(ConfigManager.getProperty("promocommerce.url"));
     }
 
