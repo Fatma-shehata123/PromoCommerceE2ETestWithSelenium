@@ -24,15 +24,23 @@ jobs:
       - name: Run selenium tests
         run: mvn clean test
 
-      - name: test-reports
-        path: allure-results
-        retention-days: 30
+      - name: Generate Allure Report
+        run: |
+          mkdir -p Test-Output/Reports/Allure
+          allure generate target/allure-results --clean -o Test-Output/Reports/Allure/allure-report
 
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: target/allure-results
+          retention-days: 30
       - name: Upload Allure report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: Test-Output/Reports/Allure/allure-report/
+          path: Test-Output/Reports/Allure/allure-report
           retention-days: 30
 
