@@ -1,51 +1,66 @@
+name: Run Selenium Tests with Allure
 
-name: Pipeline for selenium Tests
 on:
   push:
-    branches:  
+    branches:
       - main
       - master
   pull_request:
-    branches: 
+    branches:
       - main
       - master
+
 jobs:
-  selenium-test:
+  test:
+    runs-on: macos-latest
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
         with:
-          java-version: "21"
+          java-version: '21'
+          distribution: 'temurin'
           cache: maven
-          distribution: "temurin"
-      - uses: browser-actions/setup-chrome@latest
-      - name: Run selenium tests
-        run: mvn clean test
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      # تثبيت Allure على macOS
       - name: Install Allure CLI
         run: |
-          sudo apt-add-repository ppa:qameta/allure -y
-          sudo apt update
-          sudo apt install allure -y
+          brew install allure
 
+      # تشغيل Selenium tests
+      - name: Run Selenium tests
+        run: mvn clean test
+
+      # توليد تقرير Allure ثابت
       - name: Generate Allure Report
         run: |
           mkdir -p Test-Output/Reports/Allure
           allure generate target/allure-results --clean -o Test-Output/Reports/Allure/allure-report
 
-      - name: Upload Allure results
+      # رفع نتائج الاختبارات الخام
+      - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results
-          path: target/allure-results
+          name: test-reports
+          path: |
+            target/surefire-reports/
+            Test-Output/Reports/
+            Test-Output/Logs/
           retention-days: 30
+
+      # رفع تقرير Allure النهائي
       - name: Upload Allure report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: Test-Output/Reports/Allure/allure-report
+          path: Test-Output/Reports/Allure/allure-report/
           retention-days: 30
-
