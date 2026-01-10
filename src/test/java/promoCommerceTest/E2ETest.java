@@ -2,6 +2,7 @@ package promoCommerceTest;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import promoCommerce.pages.CheckoutPage;
 import promoCommerce.pages.HomePage;
@@ -12,6 +13,7 @@ import promoCommerceTestData.LoginTestData;
 import utils.reader.ConfigManager;
 import utils.reader.JsonUtils;
 
+@Listeners({io.qameta.allure.testng.AllureTestNg.class})
 public class E2ETest extends BaseTest{
     private LoginPage loginPage;
     private HomePage homePage;
@@ -41,6 +43,7 @@ public class E2ETest extends BaseTest{
         homePage = new HomePage(driver);
         checkoutPage = new CheckoutPage(driver);
     }
+
     @Test
     public void E2ETestCase(){
     loginPage.assertToUrlEquals();
