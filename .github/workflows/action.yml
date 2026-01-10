@@ -42,7 +42,7 @@ jobs:
       - name: Generate Allure Report
         run: |
           mkdir -p Test-Output/Reports/Allure
-          allure generate target/allure-results --clean -o Test-Output/Reports/Allure/allure-report
+          allure generate allure-results --clean -o Test-Output/Reports/Allure/allure-report
 
       # رفع نتائج الاختبارات الخام
       - name: Upload test reports
