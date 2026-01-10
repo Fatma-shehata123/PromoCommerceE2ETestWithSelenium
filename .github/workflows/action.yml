@@ -25,11 +25,7 @@ jobs:
         run: mvn clean test
 
       - name: test-reports
-        path: |
-          allure-results
-#          /surefire-reports/
-#          Test-Output/Reports/
-#          Test-Output/Logs/
+        path: allure-results
         retention-days: 30
 
       - name: Upload Allure report
