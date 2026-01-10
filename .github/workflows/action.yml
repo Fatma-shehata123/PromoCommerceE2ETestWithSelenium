@@ -23,16 +23,20 @@ jobs:
       - uses: browser-actions/setup-chrome@latest
       - name: Run selenium tests
         run: mvn clean test
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1
-        if: always()
-        with:
-          allure_results: allure-results
 
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
+      - name: test-reports
+        path: |
+          allure-results
+#          /surefire-reports/
+#          Test-Output/Reports/
+#          Test-Output/Logs/
+        retention-days: 30
+
+      - name: Upload Allure report
         if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: allure-report
+          path: Test-Output/Reports/Allure/allure-report/
+          retention-days: 30
 
