@@ -23,6 +23,11 @@ jobs:
       - uses: browser-actions/setup-chrome@latest
       - name: Run selenium tests
         run: mvn clean test
+      - name: Install Allure CLI
+        run: |
+          sudo apt-add-repository ppa:qameta/allure -y
+          sudo apt update
+          sudo apt install allure -y
 
       - name: Generate Allure Report
         run: |
