@@ -23,9 +23,22 @@ jobs:
       - uses: browser-actions/setup-chrome@latest
       - name: Run selenium tests
         run: mvn clean test
-      - name: Print surefire reports
+      - name: Upload test reports
         if: always()
-        run: |
-          ls target/surefire-reports
-          cat target/surefire-reports/*.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            target/surefire-reports/
+            Test-Output/Reports/
+            Test-Output/Logs/
+          retention-days: 30
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: Test-Output/Reports/Allure/allure-report/
+          retention-days: 30
 
