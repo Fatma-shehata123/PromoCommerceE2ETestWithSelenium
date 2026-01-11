@@ -1,1 +1,0 @@
-{"uuid":"6b9fd076-d43e-4d81-8133-99e8297bd895","name":"promoCommerceTest.E2ETest","children":["ec9436ed-5c85-499c-9b33-698785128720"],"befores":[{"name":"loadTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1768071511576,"stop":1768071511881}],"afters":[],"start":1768071511527,"stop":1768071544166}

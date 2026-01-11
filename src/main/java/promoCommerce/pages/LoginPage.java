@@ -1,5 +1,6 @@
 package promoCommerce.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Assertions;
@@ -23,37 +24,45 @@ public class LoginPage extends BasePage {
     private final By submitBtnLocator = By.cssSelector("[class=\"btn btn-success\"]");
     private final By visibleText =  By.xpath("//strong");
     private final By twoWayDataFieldLocator =  By.xpath("(//input[@name=\"name\"])[2]");
-
-    public void assertToUrlEquals(){
+    @Step("Assert that the login page url is expected")
+    public void assertToLoginUrl(){
         assertions.assertUrlEquals(expectedUrl);
     }
-    public void assertToTitleEquals(){
+    @Step("Assert that the login page title is expected")
+    public void assertToLoginTitle(){
         assertions.assertTitleEquals(expectedTitle);
     }
-
+    @Step("Enter the username")
     public void enterUserNameToField(String userName) {
-        actions.enterTextToField(this.userNameFieldLocator, userName);
+        actions.sendTextToField(this.userNameFieldLocator, userName);
     }
+    @Step("Enter the email")
     public void enterEmailToField(String email) {
-        actions.enterTextToField(this.emailFieldLocator, email);
+        actions.sendTextToField(this.emailFieldLocator, email);
     }
+    @Step("Enter the password")
     public void enterPasswordToField(String password) {
-        actions.enterTextToField(this.passwordFieldLocator, password);
+        actions.sendTextToField(this.passwordFieldLocator, password);
     }
+    @Step("Choose the gender from drop down")
     public void selectGender(String gender) {
         actions.singleSelectUsingVisibleText(this.genderFieldLocator, gender);
     }
+    @Step("Choose the employment status")
     public void selectEmploymentStatus() {
         actions.selectRadio(this.employmentStatusFieldLocator);
     }
+    @Step("Choose the employment status")
     public void enterDateOfBirthToField(String date) {
-        actions.enterTextToField(this.dateOfBirthFieldLocator, date);
+        actions.sendTextToField(this.dateOfBirthFieldLocator, date);
     }
+    @Step("Enter the date of birth")
     public void clickOnSubmitBtn() {
         actions.clickOnButton(this.submitBtnLocator);
     }
-    public void enterTextToTwoWayData(String twoWayData){
-        actions.enterTextToField(this.twoWayDataFieldLocator, twoWayData);
+    @Step("Enter the two way Data")
+    public void enterTextToTwoWayDataField(String twoWayData){
+        actions.sendTextToField(this.twoWayDataFieldLocator, twoWayData);
     }
 }
 

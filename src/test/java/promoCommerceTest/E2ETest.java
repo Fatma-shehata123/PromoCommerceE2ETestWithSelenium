@@ -1,5 +1,8 @@
 package promoCommerceTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -14,6 +17,7 @@ import utils.reader.ConfigManager;
 import utils.reader.JsonUtils;
 
 @Listeners({io.qameta.allure.testng.AllureTestNg.class})
+@Feature("")
 public class E2ETest extends BaseTest{
     private LoginPage loginPage;
     private HomePage homePage;
@@ -43,18 +47,19 @@ public class E2ETest extends BaseTest{
         homePage = new HomePage(driver);
         checkoutPage = new CheckoutPage(driver);
     }
-
-    @Test
+    @Story("")
+    @Description("")
+    @Test (description = "End To End test to promo commerce website")
     public void E2ETestCase(){
-    loginPage.assertToUrlEquals();
-    loginPage.assertToTitleEquals();
+    loginPage.assertToLoginUrl();
+    loginPage.assertToLoginTitle();
     loginPage.enterUserNameToField(loginTestData.username());
     loginPage.enterEmailToField(loginTestData.email());
     loginPage.enterPasswordToField(loginTestData.password());
     loginPage.selectGender(loginTestData.gender());
     loginPage.selectEmploymentStatus();
     loginPage.enterDateOfBirthToField(loginTestData.date());
-    loginPage.enterTextToTwoWayData(loginTestData.twowaydata());
+    loginPage.enterTextToTwoWayDataField(loginTestData.twowaydata());
     loginPage.clickOnSubmitBtn();
     //home page
     homePage.ClickOnHomePageButton();

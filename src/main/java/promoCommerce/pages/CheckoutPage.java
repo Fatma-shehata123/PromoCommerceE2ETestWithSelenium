@@ -21,7 +21,7 @@ public class CheckoutPage extends BasePage {
         actions.clickOnButton(this.checkoutBtnLocator);
     }
     public void enterLocationToField(String location){
-        actions.enterTextToField(this.countryField, location);
+        actions.sendTextToField(this.countryField, location);
     }
     public void clickOnTerms(){
         actions.clickOnButton(this.termsLinkLocator);

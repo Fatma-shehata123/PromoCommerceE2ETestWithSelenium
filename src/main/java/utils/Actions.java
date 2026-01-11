@@ -14,7 +14,7 @@ public class Actions extends Wait{
         this.driver = driver;
     }
 
-    public void enterTextToField(By locator, String text) {
+    public void sendTextToField(By locator, String text) {
 //        var element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
