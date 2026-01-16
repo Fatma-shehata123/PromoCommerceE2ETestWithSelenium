@@ -38,19 +38,7 @@ jobs:
 
       - name: Generate Allure Report
         run: |
-          mkdir -p Test-Output/Reports/Allure
           allure generate allure-results --clean -o Test-Output/Reports/Allure/allure-report
-
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: |
-            target/surefire-reports/
-            Test-Output/Reports/
-            Test-Output/Logs/
-          retention-days: 30
 
       - name: Upload Allure report
         if: always()

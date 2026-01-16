@@ -15,8 +15,6 @@ public class Actions extends Wait{
     }
 
     public void sendTextToField(By locator, String text) {
-//        var element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
     }
@@ -30,7 +28,7 @@ public class Actions extends Wait{
         select.selectByVisibleText(optionText);
     }
 
-    public void selectRadio(By element) {
+    public void selectRadioButton(By element) {
         driver.findElement(element).click();
     }
 }

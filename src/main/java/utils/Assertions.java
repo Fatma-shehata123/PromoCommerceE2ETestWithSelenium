@@ -33,5 +33,6 @@ public class Assertions {
         Assert.assertEquals(expectedValue,
                             expectedValue ,
                             "The expected value is not match to the actual value");
+//        Assert.assertSame("","");
     }
 }

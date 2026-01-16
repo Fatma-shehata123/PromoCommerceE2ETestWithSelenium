@@ -24,43 +24,46 @@ public class LoginPage extends BasePage {
     private final By submitBtnLocator = By.cssSelector("[class=\"btn btn-success\"]");
     private final By visibleText =  By.xpath("//strong");
     private final By twoWayDataFieldLocator =  By.xpath("(//input[@name=\"name\"])[2]");
-    @Step("Assert that the login page url is expected")
+
+    @Step("Verify login page URL")
     public void assertToLoginUrl(){
         assertions.assertUrlEquals(expectedUrl);
     }
-    @Step("Assert that the login page title is expected")
+
+    @Step("Verify login page title")
     public void assertToLoginTitle(){
         assertions.assertTitleEquals(expectedTitle);
     }
-    @Step("Enter the username")
+
+    @Step("Enter username: {userName}")
     public void enterUserNameToField(String userName) {
         actions.sendTextToField(this.userNameFieldLocator, userName);
     }
-    @Step("Enter the email")
+    @Step("Enter email: {email}")
     public void enterEmailToField(String email) {
         actions.sendTextToField(this.emailFieldLocator, email);
     }
-    @Step("Enter the password")
+    @Step("Enter password")
     public void enterPasswordToField(String password) {
         actions.sendTextToField(this.passwordFieldLocator, password);
     }
-    @Step("Choose the gender from drop down")
+    @Step("Select gender: {gender}")
     public void selectGender(String gender) {
         actions.singleSelectUsingVisibleText(this.genderFieldLocator, gender);
     }
-    @Step("Choose the employment status")
+    @Step("Select employment status")
     public void selectEmploymentStatus() {
-        actions.selectRadio(this.employmentStatusFieldLocator);
+        actions.selectRadioButton(this.employmentStatusFieldLocator);
     }
-    @Step("Choose the employment status")
+    @Step("Enter date of birth: {date}")
     public void enterDateOfBirthToField(String date) {
         actions.sendTextToField(this.dateOfBirthFieldLocator, date);
     }
-    @Step("Enter the date of birth")
+    @Step("Click on submit button")
     public void clickOnSubmitBtn() {
         actions.clickOnButton(this.submitBtnLocator);
     }
-    @Step("Enter the two way Data")
+    @Step("Enter two-way data: {twoWayData}")
     public void enterTextToTwoWayDataField(String twoWayData){
         actions.sendTextToField(this.twoWayDataFieldLocator, twoWayData);
     }

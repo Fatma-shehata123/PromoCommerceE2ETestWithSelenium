@@ -1,54 +1,18 @@
 package promoCommerceTest;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import promoCommerce.pages.CheckoutPage;
-import promoCommerce.pages.HomePage;
-import promoCommerce.pages.LoginPage;
-import promoCommerceTestData.CheckOutTestData;
-import promoCommerceTestData.ItemsTestData;
-import promoCommerceTestData.LoginTestData;
-import utils.reader.ConfigManager;
-import utils.reader.JsonUtils;
+
 
 @Listeners({io.qameta.allure.testng.AllureTestNg.class})
-@Feature("")
+@Feature("E2E Feature")
 public class E2ETest extends BaseTest{
-    private LoginPage loginPage;
-    private HomePage homePage;
-    private CheckoutPage checkoutPage;
-    private LoginTestData loginTestData;
-    private ItemsTestData itemsTestData;
-    private CheckOutTestData checkOutTestData;
 
     public E2ETest(){}
-    
-    @BeforeClass
-    public void loadTestData() {
-        loginTestData = JsonUtils.getTestData(
-                ConfigManager.getProperty("login.testdata"),
-                LoginTestData.class);
-        itemsTestData = JsonUtils.getTestData(
-                ConfigManager.getProperty("items.testdata"),
-                ItemsTestData.class);
-        checkOutTestData = JsonUtils.getTestData(
-                ConfigManager.getProperty("checkout.testdata"),
-                CheckOutTestData.class);
-    }
 
-    @BeforeMethod
-    public void setupPage() {
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        checkoutPage = new CheckoutPage(driver);
-    }
-    @Story("")
-    @Description("")
+    @Story("User logs in, adds multiple items to cart, and completes checkout")
     @Test (description = "End To End test to promo commerce website")
     public void E2ETestCase(){
     loginPage.assertToLoginUrl();
@@ -67,13 +31,12 @@ public class E2ETest extends BaseTest{
     homePage.clickAddItemToCart(itemsTestData.item2());
     homePage.clickAddItemToCart(itemsTestData.item3());
     homePage.clickAddItemToCart(itemsTestData.item4());
-    homePage.ClickOnCheckOutButton();
+    homePage.clickOnCheckOutButton();
     //checkout page
     checkoutPage.clickOnCheckOutButton();
     checkoutPage.enterLocationToField(checkOutTestData.location());
-    checkoutPage.clickOnTerms();
+    checkoutPage.acceptTermsAndConditions();
     checkoutPage.clickOnCloseBtn();
-    checkoutPage.clickOnPurchase();
-
+    checkoutPage.clickOnPurchaseBtn();
     }
 }
