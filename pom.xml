@@ -105,10 +105,6 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar"
                     </argLine>
-
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng_jenkins.xml</suiteXmlFile>
-                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
