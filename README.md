@@ -1,6 +1,7 @@
 # PromoCommerceE2ETestWithSelenium
 
-A comprehensive End-to-End testing framework for promo commerce applications using **Selenium WebDriver** and **Java**.
+A professional End-to-End (E2E) test automation framework built using **Selenium WebDriver** and **Java** to automate and validate critical user journeys in a  promo commerce applications.
+The framework is designed following Page Object Model (POM), Data-Driven Testing, and Clean Architecture principles, with Allure Reports for rich and interactive test reporting and GitHub Actions for CI execution.
 
 ---
 
@@ -28,19 +29,35 @@ A comprehensive End-to-End testing framework for promo commerce applications usi
 
 ## 🎯 Overview
 
-PromoCommerceE2ETestWithSelenium is a robust, maintainable automation testing framework designed to validate promo commerce functionalities through end-to-end testing. Built with Selenium WebDriver and Java, this framework provides a solid foundation for testing web applications with a focus on reliability, reusability, and scalability.
+This project automates the complete E2E flow of a promo commerce web application, including:
 
-This framework ensures comprehensive test coverage of user workflows, including:
-- User authentication and account management
-- Product browsing and search functionality
-- Promotional offers and discounts application
-- Shopping cart operations
-- Checkout and payment processing
-- Order confirmation and tracking
-
+- User authentication
+- Home page navigation
+- Product selection
+- Checkout process
+- Order completion validation
+  
+The goal is to ensure application stability, high test coverage, and maintainable automation code.
 ---
 
-## ✨ Features
+## 🧠 Technologies & Tools
+- Java
+- Selenium WebDriver
+- TestNG
+- Maven
+- Allure Report
+- GitHub Actions (CI/CD)
+- Page Object Model (POM)
+- Data-Driven Testing
+
+
+
+
+
+
+
+
+
 
 - ✅ **Selenium WebDriver Integration** - Industry-standard web automation tool
 - 📦 **Maven-Based Build** - Efficient dependency management and project structure
@@ -160,62 +177,66 @@ System.setProperty("webdriver.gecko.driver", "/path/to/geckodriver");
 ## 📁 Project Structure
 
 ```
-PromoCommerceE2ETestWithSelenium/
+PromoCommerceE2ETestWithSelenium
+│
+├── .github/
+│   └── workflows/
+│       └── action.yml                # GitHub Actions CI configuration
 │
 ├── src/
 │   ├── main/
-│   │   └── java/
-│   │       ├── pages/                    # Page Object Model classes
-│   │       │   ├── BasePage.java
-│   │       │   ├── LoginPage.java
-│   │       │   ├── HomePage.java
-│   │       │   ├── ProductPage.java
-│   │       │   ├── CartPage.java
-│   │       │   ├── CheckoutPage.java
-│   │       │   └── OrderConfirmationPage.java
-│   │       │
-│   │       ├── utils/                   # Utility classes and helpers
-│   │       │   ├── DriverManager.java
-│   │       │   ├── WaitHelper.java
-│   │       │   ├── ExcelDataProvider.java
-│   │       │   ├── ConfigReader.java
-│   │       │   ├── ScreenshotUtility.java
-│   │       │   └── LoggerUtility.java
-│   │       │
-│   │       ├── config/                  # Configuration management
-│   │       │   ├── ConfigProperty.java
-│   │       │   └── Constants.java
-│   │       │
-│   │       └── base/                    # Base classes
-│   │           └── TestBase.java
+│   │   ├── java/
+│   │   │   ├── promoCommerce/
+│   │   │   │   └── pages/
+│   │   │   │       ├── BasePage.java
+│   │   │   │       ├── HomePage.java
+│   │   │   │       ├── LoginPage.java
+│   │   │   │       └── CheckoutPage.java
+│   │   │
+│   │   │   └── utils/
+│   │   │       ├── Actions.java
+│   │   │       ├── Assertions.java
+│   │   │       ├── Wait.java
+│   │   │       └── reader/
+│   │   │           ├── ConfigManager.java
+│   │   │           ├── JsonUtils.java
+│   │   │           └── ResourceLoader.java
 │   │
 │   └── test/
 │       └── java/
-│           ├── tests/                   # Test classes
-│           │   ├── LoginTest.java
-│           │   ├── ProductSearchTest.java
-│           │   ├── ShoppingCartTest.java
-│           │   ├── CheckoutTest.java
-│           │   ├── PromoCodeTest.java
-│           │   └── OrderTest.java
+│           ├── promoCommerceTest/
+│           │   ├── BaseTest.java
+│           │   └── E2ETest.java
 │           │
-│           └── resources/               # Test resources
-│               ├── config.properties
-│               ├── testdata.xlsx
-│               └── log4j.properties
+│           └── promoCommerceTestData/
+│               ├── LoginTestData.java
+│               ├── ItemsTestData.java
+│               └── CheckoutTestData.java
 │
-├── target/                              # Built artifacts and reports
-│   └── surefire-reports/
-│
-├── pom.xml                              # Maven configuration file
-├── .gitignore                           # Git ignore patterns
-├── README.md                            # This file
-└── .github/                             # GitHub workflows (CI/CD)
-    └── workflows/
-        └── tests.yml
+├── pom.xml
+└── README.md
 ```
 
 ---
+## 🧩 Framework Design
+### 🔹 Page Object Model (POM)
+- Each web page has a dedicated class
+- UI locators and actions are isolated from test logic
+- Improves readability and maintainability
+
+### 🔹 Base Classes
+- BasePage → common Selenium actions for all pages
+- BaseTest → WebDriver initialization and teardown
+
+### 🔹 Utilities Layer
+- Actions → custom Selenium actions
+- Wait → explicit waits handling
+- Assertions → centralized assertion logic
+- ConfigManager → environment and configuration management
+- JsonUtils → reading test data from JSON files
+
+
+
 
 ## 🏃 Getting Started
 
